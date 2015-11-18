@@ -6,5 +6,5 @@ urlpatterns = [
     #Home Page
     url(r'^quiz/$', views.index, name='index'),
     #Quiz Question Details
-    url(r'^(?P<quiz_id>[0-9]+)/$', views.detail, name='quiz_detail')
+    url(r'^quiz/(?P<quiz_id>[0-9]+)/$', views.quizdetail, name='quiz_detail')
 ]

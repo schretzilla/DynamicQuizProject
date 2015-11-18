@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
+from .models import Quiz, Question
 
 def index(request):
-    return HttpResponse("List all quizes here")
+    quiz_list = Quiz.objects.all()
+    context = {'quiz_list': quiz_list}
+    return render(request, 'dynoquiz/index.html', context)
 
-def detail(request, quiz_id):
-    return HttpResponse("Quiz number %s." % quiz_id)
+def quizdetail(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    context = {'quiz': quiz}
+    return render(request, 'dynoquiz/quizdetail.html', context)

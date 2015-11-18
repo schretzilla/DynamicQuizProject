@@ -12,4 +12,4 @@ class Question(models.Model):
     question_text = models.CharField(max_length=200)
     date_created = models.DateTimeField('date created')
     def __str__(self):
-        return self.choice_text
+        return self.question_text

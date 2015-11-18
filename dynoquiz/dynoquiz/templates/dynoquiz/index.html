@@ -1,0 +1,29 @@
+{% extends "dynoquiz/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Available Quizes</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+        {% if quiz_list %}
+            <div class="list-group">
+                {% for quiz in quiz_list %}
+                    <a href="{% url 'dynoquiz:quiz_detail' quiz.id %}" class="list-group-item">
+                        <h3 class="list-group-item-heading"> {{ quiz.quiz_name}} </h3>
+                        <p class="list-group-item-text">Add quiz details to models and quizes</p>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No quizes available.</p>
+        {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
