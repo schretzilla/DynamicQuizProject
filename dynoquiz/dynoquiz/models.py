@@ -13,3 +13,9 @@ class Question(models.Model):
     date_created = models.DateTimeField('date created')
     def __str__(self):
         return self.question_text
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question)
+    choice_text = models.CharField(max_length=200)
+    def __str__(self):
+        return self.choice_text

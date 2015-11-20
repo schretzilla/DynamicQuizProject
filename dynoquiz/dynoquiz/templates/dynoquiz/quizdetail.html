@@ -8,6 +8,11 @@
         <ol>
             {% for question in quiz.question_set.all %}
                 <li>{{question.question_text }}</li>
+                {% for choice in question.choice_set.all %}
+                    <div class="radio">
+                        <label><input type="radio">{{choice.choice_text}}</label>
+                    </div>
+                {% endfor %}
             {% endfor %}
         </ol>
         {% else %}
