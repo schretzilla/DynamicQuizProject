@@ -14,7 +14,7 @@
                 {% for quiz in quiz_list %}
                     <a href="{% url 'dynoquiz:quiz_detail' quiz.id %}" class="list-group-item">
                         <h3 class="list-group-item-heading"> {{ quiz.quiz_name}} </h3>
-                        <p class="list-group-item-text">Add quiz details to models and quizes</p>
+                        <p class="list-group-item-text">{{ quiz.quiz_details }} </p>
                     </a>
                 {% endfor %}
             </div>
