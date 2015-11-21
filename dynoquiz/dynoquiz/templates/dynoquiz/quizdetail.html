@@ -4,21 +4,30 @@
 <div class="row">
     <div class="col-lg-12">
         <h1>{{quiz.quiz_name}}</h1>
-        {% if quiz.question_set.all %}
-        <ol>
-            {% for question in quiz.question_set.all %}
-                <li>{{question.question_text }}</li>
-                {% for choice in question.choice_set.all %}
-                    <div class="radio">
-                        <label><input type="radio">{{choice.choice_text}}</label>
-                    </div>
+        <p>{{quiz.quiz_detail}}</p>
+
+        <form action="{% url 'dynoquiz:vote' quiz.id %}" method="post">
+            {% csrf_token %}
+            {% if quiz.question_set.all %}
+            <ol>
+                {% for question in quiz.question_set.all %}
+                    <li>{{question.question_text }}</li>
+                    {% for choice in question.choice_set.all %}
+                        <div class="radio">
+                            <label><input type="radio" name="question{{question.id}}" id="question_choice{{choice.id}}" value="{{choice.id}}">{{choice.choice_text}} Votes: {{choice.votes}}</label>
+                        </div>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </ol>
-        {% else %}
-                <p>No questions for this quiz.</p>
-        {% endif %}
-    {% endblock %}
+            </ol>
+            {% else %}
+                    <p>No questions for this quiz.</p>
+            {% endif %}
+
+            <input type="submit" value="Vote" class="btn btn-primary" />
+        </form>
+
     </div>
 </div>
+
+{% endblock %}
 
