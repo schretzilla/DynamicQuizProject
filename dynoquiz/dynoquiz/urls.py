@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^quiz/(?P<quiz_id>[0-9]+)/$', views.quizdetail, name='quiz_detail'),
     #Vote on Quiz
     url(r'^quiz/(?P<quiz_id>[0-9]+)/vote/$', views.vote, name ='vote'),
+    #Results of Quiz
+    url(r'^quiz/(?P<quiz_id>[0-9]+)/results/$', views.results, name='results')
 ]
