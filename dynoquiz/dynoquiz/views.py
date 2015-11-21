@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 from .models import Quiz, Question, Choice
 
@@ -43,3 +44,14 @@ def results(request, quiz_id):
     context = {'quiz': quiz}
     return render(request, 'dynoquiz/results.html', context)
 
+def newquiz(request):
+    return render(request, 'dynoquiz/newquiz.html', context=None)
+
+def createquiz(request):
+    name = request.POST['quiz-name']
+    details = request.POST['quiz-details']
+    today = timezone.now()
+    quiz = Quiz(quiz_name=name, quiz_details=details, date_created=today)
+    quiz.save()
+
+    return HttpResponseRedirect(reverse('dynoquiz:index'))
