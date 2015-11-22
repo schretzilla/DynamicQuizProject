@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col-lg-12">
         <h1>{{quiz.quiz_name}}</h1>
-        <p>{{quiz.quiz_detail}}</p>
+        <p>{{quiz.quiz_detail}}
+            <a href="{% url 'dynoquiz:new_question' quiz.id %}" class="btn btn-primary">Add Question</a>
+        </p>
 
         <!-- Catch missed questions -->
         {% if error_message %}

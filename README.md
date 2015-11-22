@@ -10,3 +10,6 @@ $ source ./DjangoEnv/bin/activate
 Run server using: python dynoquiz/manage.py runserver 
 
 By default DynoQuiz is running at 127.0.0.1:8000/dynoquiz/quiz
+
+TODO:
+impliment django rest api

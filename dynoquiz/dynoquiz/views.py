@@ -55,3 +55,17 @@ def createquiz(request):
     quiz.save()
 
     return HttpResponseRedirect(reverse('dynoquiz:index'))
+
+def newquestion(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    context = {'quiz': quiz}
+    return render(request, 'dynoquiz/newquestion.html', context)
+
+def addquestion(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    questionText = request.POST['question-text']
+    today = timezone.now()
+    quiz.question_set.create(question_text=questionText, date_created=today)
+    quiz.save()
+
+    return HttpResponseRedirect(reverse('dynoquiz:quiz_detail', args=(quiz.id,)))

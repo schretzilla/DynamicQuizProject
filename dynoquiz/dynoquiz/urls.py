@@ -15,5 +15,9 @@ urlpatterns = [
     #New Quiz Form
     url(r'^quiz/newquiz/$', views.newquiz, name='new_quiz'),
     #Create New Quiz
-    url(r'^quiz/createquiz/$', views.createquiz, name='create_quiz')
+    url(r'^quiz/createquiz/$', views.createquiz, name='create_quiz'),
+    #New Question
+    url(r'^quiz/(?P<quiz_id>[0-9]+)/newquestion/$', views.newquestion, name='new_question'),
+    #Add New Question
+    url(r'^quiz/(?P<quiz_id>[0-9]+)/addquestion/$', views.addquestion, name='create_question')
 ]
