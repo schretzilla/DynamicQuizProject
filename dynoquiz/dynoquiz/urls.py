@@ -1,7 +1,12 @@
-from django.conf.urls import url
+from django.conf.urls import patterns, include, url
 
 from . import views
 
+#Rest API
+from rest_framework.urlpatterns import format_suffix_patterns
+from dynoquiz import api
+
+#added patterns here for api json
 urlpatterns = [
     #Home Page
     #url(arg1 = just for visual url, ar2=method to use, arg3= alias to ref this )
@@ -19,5 +24,15 @@ urlpatterns = [
     #New Question
     url(r'^quiz/(?P<quiz_id>[0-9]+)/newquestion/$', views.newquestion, name='new_question'),
     #Add New Question
-    url(r'^quiz/(?P<quiz_id>[0-9]+)/addquestion/$', views.addquestion, name='create_question')
+    url(r'^quiz/(?P<quiz_id>[0-9]+)/addquestion/$', views.addquestion, name='create_question'),
+
+    #Try angular
+    url(r'^angular/$', views.angular, name='angular'),
+
+    #API
+    url(r'^api/quiz/$', api.QuizList.as_view()),
+    url(r'^api/quiz/(?P<pk>[0-9]+)/$', api.QuizDetail.as_view()),
 ]
+
+#allows API end points to provide json or html, Currently not doing much
+urlpatterns = format_suffix_patterns(urlpatterns)

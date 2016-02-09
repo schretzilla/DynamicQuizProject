@@ -69,3 +69,8 @@ def addquestion(request, quiz_id):
     quiz.save()
 
     return HttpResponseRedirect(reverse('dynoquiz:quiz_detail', args=(quiz.id,)))
+
+def angular(request):
+        return render(request, 'dynoquiz/angular.html')
+
+        
