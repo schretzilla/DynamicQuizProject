@@ -21,18 +21,31 @@ class QuizList(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class QuizDetail(APIView):
-	def get_quiz(self, pk):
-		try:
-			return Quiz.objects.get(pk=pk)
-		except Quiz.DoesNotExist:
-			raise Http404
+    def get_quiz(self, pk):
+        try:
+            return Quiz.objects.get(pk=pk)
+        except Quiz.DoesNotExist:
+            raise Http404
 
-	def get(self, request, pk, format=None):
-		quiz = self.get_quiz(pk)
-		serialized_quiz = QuizSerializer(quiz)
-		return Response(serialized_quiz.data)
+    def get(self, request, pk, format=None):
+        quiz = self.get_quiz(pk)
+        serialized_quiz = QuizSerializer(quiz)
+        return Response(serialized_quiz.data)
 
-	def delete(self, request, pk, format=None):
-		quiz = self.get_quiz(pk)
-		quiz.delete()
-		return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, pk, format=None):
+        quiz = self.get_quiz(pk)
+        quiz.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, format=None):
+        serializer = QuizSerializer(data=request.data)
+        if serializer.is_valid():
+            quiz = self.get_quiz(serializer.id)
+
+            #make update function in model class
+            quiz.quiz_name = serializer.quiz_name
+            quiz.quiz_details = serializer.quiz_details
+            quiz.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

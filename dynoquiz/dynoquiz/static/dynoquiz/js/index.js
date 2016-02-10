@@ -21,26 +21,49 @@ index.controller('QuizCtrl', function QuizCtrl($scope, $log, $http){
 			'quiz_details':$scope.quizDetails,
 			'date_created':$scope.date
 		};
-		$http.post('/dynoquiz/api/quiz/', quiz);
-		$scope.loadItems();
+		$scope.quizName=null;
+		$scope.quizDetails=null;
+		//TODO: Check why refresh is needed to see results here
+		$http.post('/dynoquiz/api/quiz/', quiz).then(function(){
+			$scope.loadItems();
+		});
+	};
+
+	$scope.updateQuiz = function(){
 
 	};
 
-	//Check
 	$scope.deleteQuiz = function(id) {
-		alert("attempt delete: " + id);
 		$http.delete('/dynoquiz/api/quiz/' + id).then(function(){
 			$scope.loadItems();
 		});
-		//$scope.loadItems();
 	};
 
 	$scope.toggleCreateQuiz = function() {
 		$scope.createQuizFields = !$scope.createQuizFields;
 	};
 
+	$scope.formsetEditQuiz = function(quiz) {
+	    $scope.updateQuizBtn = true;
+	    $scope.editBtnClass = "active";
+	    $scope.createBtnClass = "";
+	    $scope.createQuizBtn = false;
+	    $scope.quizName = quiz.quiz_name;
+	    $scope.quizDetails = quiz.quiz_details;
+	};
+
+	$scope.formsetCreateQuiz = function() {
+	    $scope.updateQuizBtn = false;
+	    $scope.editBtnClass="disabled";
+	    $scope.createBtnClass="active";
+	    $scope.createQuizBtn = true;
+	    $scope.quizName = "";
+	    $scope.quizDetails = "";
+
+	}
+
 	$scope.loadItems();
-	$scope.createQuizFields = false;
+	$scope.formsetCreateQuiz();
 
 
 }); //End Index controller 

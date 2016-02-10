@@ -9,6 +9,5 @@ class QuizSerializer(serializers.ModelSerializer):
 			'id',
 			'quiz_name',
 			'quiz_details',
-			'question_set',
 			'date_created'
 			)
