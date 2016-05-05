@@ -21,14 +21,22 @@ Impliment django rest API
 	Practice using Django's API - Status: Done
 	Phase out Django's API for Angular and Rest - Status: In progress
 	Integrate angular into project - Status: In progress
+
 	API for Quizes:
 		Get List View- 	Status: DONE
-		Post - Status: Done
-		Edit - Status: None
+		Post - Status: DONE
+		Edit - Status: DONE
 		Delete - Status: Done
 
 	API for Questions:
-		Get List View - Status: None
-		Post - Status: None
-		Edit - None
-		Delete - Status: Done
+		Get List View - Status: DONE
+		Post - Status: DONE
+		Edit - DONE
+		Delete - Status: DONE
+
+	API for Choices:
+		Get List View - Status: NONE
+		Post - Status: NONE
+		Edit - NONE 
+		Delete - Status: NONE
+		
