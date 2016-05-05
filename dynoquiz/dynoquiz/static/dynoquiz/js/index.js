@@ -23,7 +23,6 @@ index.controller('QuizCtrl', function QuizCtrl($scope, $log, $http){
 		};
 		$scope.quizName=null;
 		$scope.quizDetails=null;
-		//TODO: Check why refresh is needed to see results here
 		$http.post('/dynoquiz/api/quiz/', quiz).then(function(){
 			$scope.loadItems();
 		});
@@ -31,6 +30,19 @@ index.controller('QuizCtrl', function QuizCtrl($scope, $log, $http){
 
 	$scope.updateQuiz = function(){
 
+	    quiz = {
+	      'id':focusedQuiz.id,
+          'quiz_name': $scope.quizName,
+          'quiz_details':$scope.quizDetails,
+          'date_created':focusedQuiz.date_created
+	    };
+        //focusedQuiz.quiz_name = $scope.quizName;
+        //focusedQuiz.quizDetails = $scope.quizDetails;
+        $http.put('/dynoquiz/api/quiz/'+quiz.id, quiz).then(function(){
+            $scope.loadItems();
+        }, function(response) {
+            alert("error: " + response.data);
+        });
 	};
 
 	$scope.deleteQuiz = function(id) {
@@ -48,8 +60,8 @@ index.controller('QuizCtrl', function QuizCtrl($scope, $log, $http){
 	    $scope.editBtnClass = "active";
 	    $scope.createBtnClass = "";
 	    $scope.createQuizBtn = false;
-	    $scope.quizName = quiz.quiz_name;
-	    $scope.quizDetails = quiz.quiz_details;
+	    setFocusedQuiz(quiz);
+	    loadQuizFields(focusedQuiz);
 	};
 
 	$scope.formsetCreateQuiz = function() {
@@ -57,13 +69,34 @@ index.controller('QuizCtrl', function QuizCtrl($scope, $log, $http){
 	    $scope.editBtnClass="disabled";
 	    $scope.createBtnClass="active";
 	    $scope.createQuizBtn = true;
-	    $scope.quizName = "";
-	    $scope.quizDetails = "";
-
+	    setFocusedQuiz("");
+	    loadQuizFields(focusedQuiz)
 	}
 
+	loadQuizFields = function(quiz) {
+	    $scope.quizName = quiz.quiz_name;
+	    $scope.quizDetails = quiz.quiz_details;
+	};
+
+    //Set Focused Quiz when Edit is selected
+    setFocusedQuiz = function(quiz) {
+        focusedQuiz = {
+          'id':quiz.id,
+          'quiz_name': quiz.quiz_name,
+          'quiz_details':quiz.quiz_details,
+          'date_created':quiz.date_created
+        };
+    };
+
+    quizToString = function(quiz) {
+        return ('id:' + quiz.id + ' quiz_name:' + quiz.quiz_name + ' quiz_details:' + quiz.quiz_details + ' date_created:' + quiz.date_created)
+    };
+
+    //On page load
 	$scope.loadItems();
+	var focusedQuiz = "";
 	$scope.formsetCreateQuiz();
+
 
 
 }); //End Index controller 

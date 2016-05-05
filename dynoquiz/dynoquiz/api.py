@@ -1,11 +1,12 @@
-from .models import Quiz
-from .serializers import QuizSerializer
+from .models import Quiz, Question, Choice
+from .serializers import QuizSerializer, QuestionSerializer, ChoiceSerializer
 from django.http import Http404
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics
+#import pdb; pdb.set_trace()             #FOR TESTING
+
 
 class QuizList(APIView):
 	def get(self, request, fromat=None):
@@ -37,15 +38,59 @@ class QuizDetail(APIView):
         quiz.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def put(self, request, format=None):
-        serializer = QuizSerializer(data=request.data)
+    def put(self, request, pk, format=None):
+        quiz = self.get_quiz(pk)
+        serializer = QuizSerializer(quiz, data=request.data)
         if serializer.is_valid():
-            quiz = self.get_quiz(serializer.id)
-
-            #make update function in model class
-            quiz.quiz_name = serializer.quiz_name
-            quiz.quiz_details = serializer.quiz_details
-            quiz.save()
+            serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class QuestionList(APIView):
+    def get(self, request, pk, format=None):
+        questions = Quiz.objects.get(pk=pk).question_set.all()
+        serialized_questions = QuestionSerializer(questions, many=True)
+        return Response(serialized_questions.data)
+
+    def post(self, request, pk, format=None):
+        serializer = QuestionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class QuestionDetail(APIView):
+    def get_question(self, question_id):
+        try:
+            return Question.objects.get(pk=question_id)
+        except Question.DoesNotExist:
+            raise Http404
+
+    def get(self, request, question_id, format=None):
+        question = self.get_question(question_id)
+        serialized_question = QuestionSerializer(question)
+        return Response(serialized_question.data)
+
+    def delete(self, request, pk, question_id, format=None):
+        question = self.get_question(question_id)
+        question.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, pk, question_id, format=None):
+        question = self.get_question(question_id)
+        serializer = QuestionSerializer(question, data=request.data)
+        #import pdb; pdb.set_trace()
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class ChoiceList(APIView):
+    def get(self, request, pk, question_id, format=None):
+        choices = Question.objects.get(pk=question_id).choice_set.all()
+        serialized_choices = ChoiceSerializer(choices, many=True)
+        return Response(serialized_choices.data)
