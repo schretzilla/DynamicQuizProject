@@ -29,15 +29,19 @@ urlpatterns = [
     #Try angular
     url(r'^angular/$', views.angular, name='angular'),
 
+    #TODO: Version API
+    #TODO: Plural API nouns
     #API
     url(r'^api/quiz/$', api.QuizList.as_view()),
     url(r'^api/quiz/(?P<pk>[0-9]+)/$', api.QuizDetail.as_view()),
 
     #Load Question list
     url(r'^api/quiz/(?P<pk>[0-9]+)/question/$', api.QuestionList.as_view()),
-    #TODO: restructure this api link so that QuizID is no longer needed
-    url(r'^api/quiz/(?P<pk>[0-9]+)/question/(?P<question_id>[0-9]+)/$', api.QuestionDetail.as_view())
-    #url(r'^api/quiz/(?P<pk>[0-9]+)/question/(?P<question_id>[0-9]+)/$', api.ChoiceList.as_view())
+    url(r'^api/quiz/(?P<pk>[0-9]+)/question/(?P<question_id>[0-9]+)/$', api.QuestionDetail.as_view()),
+
+    #Choice API
+    url(r'^api/question/(?P<question_id>[0-9]+)/$', api.ChoiceList.as_view()),
+    url(r'^api/question/(?P<question_id>[0-9]+)/choice/(?P<choice_id>[0-9]+)/$', api.ChoiceDetail.as_view())
 ]
 
 #allows API end points to provide json or html, Currently not doing much

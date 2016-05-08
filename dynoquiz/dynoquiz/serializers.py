@@ -12,16 +12,6 @@ class QuizSerializer(serializers.ModelSerializer):
 			'date_created'
 			)
 
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = (
-            'id',
-            'question_text',
-            'quiz',
-            'date_created'
-        )
-
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choice
@@ -29,4 +19,16 @@ class ChoiceSerializer(serializers.ModelSerializer):
             'id',
             'choice_text',
             'votes'
+        )
+#TODO: try adding a "choices" to the question model then serialize that cuz its a model serializer
+class QuestionSerializer(serializers.ModelSerializer):
+    choices = ChoiceSerializer(many=True, read_only=True)
+    class Meta:
+        model = Question
+        fields = (
+            'id',
+            'question_text',
+            'quiz',
+            'date_created',
+            'choices'
         )

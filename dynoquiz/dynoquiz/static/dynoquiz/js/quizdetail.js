@@ -6,6 +6,16 @@ quizDetail.config(function($interpolateProvider){
 	$interpolateProvider.endSymbol('}]}');
 });
 
+quizDetail.directive('showChoices', function() {
+    return {
+        restrict: 'E',
+        link: function(scope, element, attrs){
+            scope.choices = attrs.question.choice_set.all();
+        },
+        template: '<p ng-repeat="choice in choices">{{choice.id}}</p> <p>test</p>'
+    };
+});
+
 quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $http){
 
     //On page load
@@ -17,11 +27,20 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
     };
 
     $scope.getChoices = function(questionId) {
-        var choices;
-        $http.get('/dynoquiz/api/quiz/'+$scope.quizId+'/question/'+questionId).then(function(response) {
-            choices = (response.data);
+        $http.get('/dynoquiz/api/question/'+questionId).then(function(response) {
+             return response.data;
         });
-        return choices;
+    };
+
+    //TODO: Load question on edit click
+    $scope.getFullQuestion = function(questionId) {
+       $http.get('/dynoquiz/api/quiz/'+$scope.quizId+'/question/'+questionId).then(function(response){
+            $scope.questions = response.data;
+       },
+            function(data) {
+                //Error
+                alert("error: on get full question: " +data );
+            });
     };
 
     $scope.addQuestion = function(){
@@ -82,7 +101,9 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         //save persistant variables
         $scope.quizId = curQuizId;
         $scope.loadQuestions();
+        //$scope.getFullQuestion(1);
     };
 
     var focusedQuestion = "";
+
 });
