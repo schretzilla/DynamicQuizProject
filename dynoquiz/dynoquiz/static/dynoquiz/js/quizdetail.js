@@ -6,6 +6,7 @@ quizDetail.config(function($interpolateProvider){
 	$interpolateProvider.endSymbol('}]}');
 });
 
+//TODO: Either Implement or remove
 quizDetail.directive('showChoices', function() {
     return {
         restrict: 'E',
@@ -78,18 +79,25 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         });
     };
 
+    //Erase input fields when a question has been cancled
+    cancelQuestion = function() {
+
+    };
+
     //Set Focused Question when Edit is selected
     setFocusedQuestion = function(question) {
         focusedQuestion = {
             'id':question.id,
             'question_text':question.question_text,
             'quiz':question.quiz,
-            'date_created':question.date_created
+            'date_created':question.date_created,
+            'choices':question.choices
         };
     };
 
     loadQuestionFields = function(question) {
         $scope.questionText = question.question_text;
+        $scope.choices = question.choices;
     };
 
     $scope.formsetEditQuestion = function(question) {

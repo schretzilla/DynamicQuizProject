@@ -20,7 +20,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
             'choice_text',
             'votes'
         )
-#TODO: try adding a "choices" to the question model then serialize that cuz its a model serializer
+
 class QuestionSerializer(serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True)
     class Meta:
