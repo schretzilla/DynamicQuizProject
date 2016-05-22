@@ -18,6 +18,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'choice_text',
+            'question',
             'votes'
         )
 

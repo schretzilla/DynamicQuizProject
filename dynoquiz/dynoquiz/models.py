@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 #A quiz contains many questions
 class Quiz(models.Model):
@@ -24,5 +25,6 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, related_name='choices')
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
+    date_created = models.DateTimeField('date created', default=datetime.now)
     def __str__(self):
         return self.choice_text

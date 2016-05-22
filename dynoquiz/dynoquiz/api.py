@@ -68,7 +68,6 @@ class QuestionDetail(APIView):
         except Question.DoesNotExist:
             raise Http404
 
-    #TODO: get a quesiton with all it's choices
     def get(self, request, pk, question_id, format=None):
         question = self.get_question(question_id)
         serialized_question = QuestionSerializer(question)
@@ -83,7 +82,6 @@ class QuestionDetail(APIView):
     def put(self, request, pk, question_id, format=None):
         question = self.get_question(question_id)
         serializer = QuestionSerializer(question, data=request.data)
-        #import pdb; pdb.set_trace()
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -97,6 +95,14 @@ class ChoiceList(APIView):
         choices = Question.objects.get(pk=question_id).choice_set.all()
         serialized_choices = ChoiceSerializer(choices, many=True)
         return Response(serialized_choices.data)
+
+    def post(self, request, question_id, format=None):
+        serializer = ChoiceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            #import pdb; pdb.set_trace()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ChoiceDetail(APIView):
     #

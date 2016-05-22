@@ -27,6 +27,7 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
        });
     };
 
+    //ToDO: Might be legacy and not needed
     $scope.getChoices = function(questionId) {
         $http.get('/dynoquiz/api/question/'+questionId).then(function(response) {
              return response.data;
@@ -62,7 +63,7 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
             'id':focusedQuestion.id,
             'quiz':focusedQuestion.quiz,
             'question_text':$scope.questionText,
-            'date_created':focusedQuestion.date_created
+            'date_created':focusedQuestion.date_created,
         };
 
         $http.put('/dynoquiz/api/quiz/'+$scope.quizId+'/question/'+focusedQuestion.id, question).then(function(){
@@ -76,6 +77,25 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         //alert("Deleting question: " + questionId);
         $http.delete('/dynoquiz/api/quiz/'+$scope.quizId+'/question/'+questionId).then(function(){
             $scope.loadQuestions();
+        });
+    };
+
+    $scope.postNewChoice = function() {
+        var choice = {
+            'question':focusedQuestion.id,
+            'choice_text':$scope.newChoiceText,
+            'votes':0,
+            'date_created':new Date()
+        };
+
+        $http.post('/dynoquiz/api/question/'+focusedQuestion.id+'/choice/', choice).then(function(response){
+            //Add newly created choice to the focused questions choices
+            choice.id = response.data.id;
+            focusedQuestion.choices.push(choice);
+            loadQuestionFields(focusedQuestion);
+            //clear choice box and hide it
+            $scope.newChoiceText=null;
+            $scope.addChoice();
         });
     };
 
@@ -95,9 +115,54 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         };
     };
 
+    $scope.addChoice = function() {
+        var newChoice = {
+            'choice_text':"",
+            'question':focusedQuestion.id,
+            'votes':0,
+            'date_created':new Date()
+
+        };
+
+        $scope.addNewChoiceBtn = !$scope.addNewChoiceBtn;
+        $scope.addNewChoice = !$scope.addNewChoice;
+    };
+
+
+    //TODO: Save only one choice at a time
+    $scope.saveChoice = function(choice) {
+        var curChoice = "editChoice"+choice.id;
+        $scope[curChoice] = !$scope[curChoice];
+
+        var choice = {
+            'quiz':$scope.quizId,
+            'question_text':$scope.questionText,
+            'date_created':new Date()
+        };
+
+
+    };
+
+
+
     loadQuestionFields = function(question) {
         $scope.questionText = question.question_text;
         $scope.choices = question.choices;
+    };
+
+    $scope.formsetEditChoice = function(choice) {
+        setFocusedChoice(choice);
+        var curChoice = "editChoice"+choice.id;
+        $scope[curChoice] = !$scope[curChoice];
+    };
+
+
+    setFocusedChoice = function(choice) {
+        focusedChoice = {
+            'id':choice.id,
+            'choice_text':choice.choice_text,
+            'votes':choice.votes
+        };
     };
 
     $scope.formsetEditQuestion = function(question) {
@@ -113,5 +178,6 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
     };
 
     var focusedQuestion = "";
+    $scope.choices=[];
 
 });

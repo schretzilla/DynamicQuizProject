@@ -41,9 +41,32 @@
                         <label for="question">Question:</label>
                         <input ng-model="questionText" type="text" class="form-control" id="question" placeholder="Question">
                         <label>Choices:</label>
-                        <ol class="radio">
-                            <li ng-repeat="choice in choices"><input type="text" class="form-control" name="choice{[{choice.id}]}" value="{[{choice.choice_text}]}"></li>
+                        <button ng-click="addChoice()" ng-hide="addNewChoiceBtn" type="button" class="btn btn-primary btn-xs">+</button>
+                        <button ng-click="addChoice()" ng-show="addNewChoiceBtn" type="button" class="btn btn-primary btn-xs">-</button>
+
+                        <!-- TODO: Replace ordered list with custom ordered list so item number hide on edit -->
+                        <ol>
+                            <li ng-repeat="choice in choices">
+                                <div ng-hide="editChoice{[{choice.id}]}">
+                                    {[{choice.choice_text}]}
+                                    <button ng-click="formsetEditChoice(choice)" type="button" class="btn btn-info btn-xs">Edit</button>
+                                </div>
+                                <div ng-show="editChoice{[{choice.id}]}" class="input-group">
+                                    <input type="text" class="form-control" value="{[{choice.choice_text}]}">
+                                    <span class="input-group-btn">
+                                        <button ng-click="saveChoice(choice)" type="button" class="btn btn-info btn">Save</button>
+                                    </span>
+                                </div>
+                            </li>
+                            <div ng-show="addNewChoice" class="input-group">
+                                <input ng-model="newChoiceText" type="text" class="form-control">
+                                <span class="input-group-btn">
+                                      <button ng-click="postNewChoice()" type="button" class="btn btn-info">Save</button>
+                                </span>
+                            </div>
                         </ol>
+                        <div>
+                        </div>
                     </div>
                 </div>
 
