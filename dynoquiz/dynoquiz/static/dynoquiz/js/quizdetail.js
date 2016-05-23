@@ -33,7 +33,8 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
     //TODO: Get choices should return a value
     $scope.getChoices = function(questionId) {
         $http.get('/dynoquiz/api/question/'+questionId+'/choice').then(function(response) {
-             return response.data;
+             $scope.choices = response.data;
+             focusedQuestion.choices=$scope.choices;
         });
     };
 
@@ -86,13 +87,12 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         });
     };
 
+    //TODO: This needs work, not updating the left hand side and something is wrong with the return (google return with async fns)
     $scope.deleteChoice = function(choiceId) {
         $http.delete('/dynoquiz/api/question/'+focusedQuestion.id+'/choice/'+choiceId).then(function(){
             //ReLoad Focused Questions Choices
+            $scope.getChoices(focusedQuestion.id);
         });
-
-        focusedQuestion.choices = $scope.getChoices(focusedQuestion.id);
-        loadQuestionFields(focusedQuestion);
     };
 
 
