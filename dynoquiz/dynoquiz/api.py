@@ -92,7 +92,8 @@ class QuestionDetail(APIView):
 
 class ChoiceList(APIView):
     def get(self, request, question_id, format=None):
-        choices = Question.objects.get(pk=question_id).choice_set.all()
+        #import pdb; pdb.set_trace()
+        choices = Question.objects.get(pk=question_id).choices
         serialized_choices = ChoiceSerializer(choices, many=True)
         return Response(serialized_choices.data)
 
@@ -100,13 +101,34 @@ class ChoiceList(APIView):
         serializer = ChoiceSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            #import pdb; pdb.set_trace()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ChoiceDetail(APIView):
-    #
-    pass
+    def get_choice(self, choice_id):
+        try:
+            return Choice.objects.get(pk=choice_id)
+        except Choice.DoesNotExist:
+            raise Http404
+
+    def get(self, request, question_id, choice_id, format=None):
+        choice = self.get_choice(choice_id)
+        serialized_choice = ChoiceSerializer(choice)
+        return Response(serialized_choice)
+
+    def delete(self, request, question_id, choice_id, format=None):
+        choice = self.get_choice(choice_id)
+        choice.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, choice_id, format=None):
+        choice = self.get_choice(choice_id)
+        serializer = ChoiceSerializer(choice, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

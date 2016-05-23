@@ -27,9 +27,12 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
        });
     };
 
-    //ToDO: Might be legacy and not needed
+    /*
+    * LOAD
+    */
+    //TODO: Get choices should return a value
     $scope.getChoices = function(questionId) {
-        $http.get('/dynoquiz/api/question/'+questionId).then(function(response) {
+        $http.get('/dynoquiz/api/question/'+questionId+'/choice').then(function(response) {
              return response.data;
         });
     };
@@ -73,12 +76,25 @@ quizDetail.controller('QuizDetailCtrl', function QuizDetailCtrl($scope, $log, $h
         });
     };
 
+    /**
+    DELETE
+    */
     $scope.deleteQuestion = function(questionId) {
         //alert("Deleting question: " + questionId);
         $http.delete('/dynoquiz/api/quiz/'+$scope.quizId+'/question/'+questionId).then(function(){
             $scope.loadQuestions();
         });
     };
+
+    $scope.deleteChoice = function(choiceId) {
+        $http.delete('/dynoquiz/api/question/'+focusedQuestion.id+'/choice/'+choiceId).then(function(){
+            //ReLoad Focused Questions Choices
+        });
+
+        focusedQuestion.choices = $scope.getChoices(focusedQuestion.id);
+        loadQuestionFields(focusedQuestion);
+    };
+
 
     $scope.postNewChoice = function() {
         var choice = {

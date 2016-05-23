@@ -50,6 +50,7 @@
                                 <div ng-hide="editChoice{[{choice.id}]}">
                                     {[{choice.choice_text}]}
                                     <button ng-click="formsetEditChoice(choice)" type="button" class="btn btn-info btn-xs">Edit</button>
+                                    <button ng-click="deleteChoice(choice.id)" type="button" class="btn btn-info btn-xs">Delete</button>
                                 </div>
                                 <div ng-show="editChoice{[{choice.id}]}" class="input-group">
                                     <input type="text" class="form-control" value="{[{choice.choice_text}]}">
