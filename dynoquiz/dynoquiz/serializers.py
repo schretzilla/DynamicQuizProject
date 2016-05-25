@@ -2,6 +2,7 @@ from .models import Quiz, Question, Choice
 
 from rest_framework import serializers
 
+#TODO: Fix Ordering issues
 class QuizSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Quiz
@@ -10,10 +11,11 @@ class QuizSerializer(serializers.ModelSerializer):
 			'quiz_name',
 			'quiz_details',
 			'date_created'
-			)
+		)
 
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
+        ordering = ['-created',]
         model = Choice
         fields = (
             'id',
@@ -25,6 +27,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True)
     class Meta:
+        ordering = ['-created',]
         model = Question
         fields = (
             'id',
