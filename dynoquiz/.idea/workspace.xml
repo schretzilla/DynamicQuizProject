@@ -24,6 +24,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools-18.2.dist-info/top_level.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools-18.2.dist-info/zip-safe" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools/compat.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.ebextensions/django.config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/.ebextensions/01_packages.config" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/packaging/__about__.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/packaging/__about__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/__about__.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/__about__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/__init__.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/__init__.py" />
@@ -143,10 +145,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools/command/sdist.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools/command/sdist.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/search.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/search.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynoquiz/serializers.py" afterPath="$PROJECT_DIR$/dynoquiz/serializers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/requests/sessions.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/requests/sessions.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools/command/setopt.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/setuptools/command/setopt.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/settings.py" afterPath="$PROJECT_DIR$/mysite/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/show.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/show.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/six.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/six.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/packaging/specifiers.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/packaging/specifiers.py" />
@@ -176,7 +176,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/wheel.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/commands/wheel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/colorama/win32.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/colorama/win32.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/colorama/winterm.py" afterPath="$PROJECT_DIR$/../DjangoEnv/lib/python2.7/site-packages/pip/_vendor/colorama/winterm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dynoquiz.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -246,16 +245,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -266,10 +255,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1710">
+            <state vertical-scroll-proportion="-1.1040816" vertical-offset="901" max-vertical-offset="1710">
               <caret line="24" column="40" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="40" />
               <folding />
             </state>
@@ -281,16 +270,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="465">
               <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="django.config" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.ebextensions/django.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="515">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -385,52 +364,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mysite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mysite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".elasticbeanstalk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".elasticbeanstalk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynoquiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".ebextensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1026,13 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/.elasticbeanstalk/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="909">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dynoquiz/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="660">
@@ -1043,26 +969,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="909">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="909">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1710">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1075,10 +985,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.ebextensions/django.config">
+    <entry file="file://$PROJECT_DIR$/mysite/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="909">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.1040816" vertical-offset="901" max-vertical-offset="1710">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="40" />
           <folding />
         </state>
       </provider>
